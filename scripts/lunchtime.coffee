@@ -17,7 +17,7 @@
 module.exports = (robot) ->
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
     d = new Date()
-    d.setHours(12,30,0,0)
+    d.setHours(11,30,0,0)
     e = new Date()
     if msg.match[1] == "really lunchtime"
       msBetween = Math.abs(d-e) / 1000
