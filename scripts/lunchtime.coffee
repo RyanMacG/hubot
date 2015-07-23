@@ -16,9 +16,12 @@
 
 module.exports = (robot) ->
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
-    d = new Date()
-    d.setHours(11,30,0,0)
-    e = new Date()
+    now = new Date()
+    d = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+    d.setHours(12,30,0,0)
+    e = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+    console.log d
+    console.log e
     if msg.match[1] == "really lunchtime"
       msBetween = Math.abs(d-e) / 1000
       hoursBetween = Math.floor(msBetween / 3600) % 24
