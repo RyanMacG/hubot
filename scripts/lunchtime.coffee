@@ -16,15 +16,16 @@
 
 module.exports = (robot) ->
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
-    now = new Date()
-    d = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+    d = new Date()
     d.setHours(12,30,0,0)
-    e = new Date(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(),  now.getUTCHours(), now.getUTCMinutes(), now.getUTCSeconds())
+    e = new Date()
+    lunchTime = new Date(d.getTime() + d.getTimezoneOffset() * 60000)
+    now = new Date(e.getTime() + e.getTimezoneOffset() * 60000);
     if msg.match[1] == "really lunchtime"
-      msBetween = Math.abs(d-e) / 1000
+      msBetween = Math.abs(lunchTime-now) / 1000
       hoursBetween = Math.floor(msBetween / 3600) % 24
       minsBetween = Math.floor(msBetween / 60) % 60
-      if e < d
+      if now < lunchTime
         hours = " #{hoursBetween} hour#{('s' if hoursBetween > 1) ? ''}"
         minutes = " #{minsBetween} minute#{('s' if minsBetween > 1) ? ''}"
         msg.send "Afraid not, only#{(hours if hoursBetween >= 1) ? ''}#{(minutes if minsBetween != 0) ? ''} to go though!"
