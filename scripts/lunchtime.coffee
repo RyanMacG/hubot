@@ -16,25 +16,36 @@
 
 module.exports = (robot) ->
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
-    d = new Date()
-    d.setHours(12,30,0,0)
-    e = new Date()
-    lunchTime = new Date(d.getTime() + d.getTimezoneOffset() * 60000)
-    now = new Date(e.getTime() + e.getTimezoneOffset() * 60000);
+    lunchTimeStart = new Date()
+    lunchTimeStart.setHours(10,30,0,0)
+    lunchTimeStart.setTime(lunchTimeStart.getTime()+lunchTimeStart.getTimezoneOffset()*60*1000)
+
+    lunchTimeEnd = new Date()
+    lunchTimeEnd.setHours(11,30,0,0)
+    lunchTimeEnd.setTime(lunchTimeEnd.getTime()+lunchTimeEnd.getTimezoneOffset()*60*1000)
+    
+    now = new Date()
+    now.setTime(now.getTime()+now.getTimezoneOffset()*60*1000)
+    
     if msg.match[1] == "really lunchtime"
-      msBetween = Math.abs(lunchTime-now) / 1000
-      hoursBetween = Math.floor(msBetween / 3600) % 24
-      minsBetween = Math.floor(msBetween / 60) % 60
-      if now < lunchTime
-        hours = " #{hoursBetween} hour#{('s' if hoursBetween > 1) ? ''}"
-        minutes = " #{minsBetween} minute#{('s' if minsBetween > 1) ? ''}"
-        msg.send "Afraid not, only#{(hours if hoursBetween >= 1) ? ''}#{(minutes if minsBetween != 0) ? ''} to go though!"
+      if now < lunchTimeStart
+        msTill = Math.abs(lunchTimeStart-now) / 1000
+        hoursTill = Math.floor(msTill / 3600) % 24
+        minsTill = Math.floor(msTill / 60) % 60
+        hours = " #{hoursTill} hour#{('s' if hoursTill > 1) ? ''}"
+        minutes = " #{minsTill} minute#{('s' if minsTill > 1) ? ''}"
+        msg.send "Afraid not, only#{(hours if hoursTill >= 1) ? ''}#{(minutes if minsTill != 0) ? ''} to go though!"
+      else if now > lunchTimeStart && now < lunchTimeEnd
+        msg.send "/giphy absolutely"
       else
-        if hoursBetween < 1
-          msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
-         else if hoursBetween >= 1 && hoursBetween < 2
+        msSince = Math.abs(now-lunchTimeEnd) / 1000
+        hoursSince = Math.floor(msSince / 3600) % 24
+        minsSince = Math.floor(msSince / 60) % 60
+        hours = " #{hoursSince} hour#{('s' if hoursSince > 1) ? ''}"
+        minutes = " #{minsSince} minute#{('s' if minsSince > 1) ? ''}"
+        if hoursSince <= 1
           msg.send "You've just missed it, sorry!"
-         else
-          msg.send "Erm, lunch was over #{hoursBetween} hours ago. I think you missed it!"
+        else
+          msg.send "Erm, lunch was over#{(hours if hoursSince > 1) ? ''} ago. I think you missed it!"
     else
       msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
