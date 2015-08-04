@@ -1,5 +1,5 @@
 # Description:
-#   Ask that age old question - Is it lunchtime yet.
+#   Ask that age old question - Is it hometime yet.
 #
 # Dependencies:
 #   None
@@ -8,8 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot is it lunchtime yet - Return the answer we all know and love.
-#   hubot is it really lunchtime yet  - Return the real time until deliciousness can begin!
+#   hubot is it hometime yet - Return the time until we can all go home to our miserable lives.
 #
 # Author:
 #  Richard Lindsay
