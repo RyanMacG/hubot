@@ -17,11 +17,11 @@
 module.exports = (robot) ->
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
     lunchTimeStart = new Date()
-    lunchTimeStart.setHours(12,30,0,0)
+    lunchTimeStart.setHours(12,00,0,0)
     lunchTimeStart.setTime(lunchTimeStart.getTime()+lunchTimeStart.getTimezoneOffset()*60*1000)
 
     lunchTimeEnd = new Date()
-    lunchTimeEnd.setHours(13,30,0,0)
+    lunchTimeEnd.setHours(14,00,0,0)
     lunchTimeEnd.setTime(lunchTimeEnd.getTime()+lunchTimeEnd.getTimezoneOffset()*60*1000)
     
     now = new Date()
