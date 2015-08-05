@@ -17,11 +17,11 @@
 module.exports = (robot) ->
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
     lunchTimeStart = new Date()
-    lunchTimeStart.setHours(12,30,0,0)
+    lunchTimeStart.setHours(12,0,0,0)
     lunchTimeStart.setTime(lunchTimeStart.getTime()+lunchTimeStart.getTimezoneOffset()*60*1000)
 
     lunchTimeEnd = new Date()
-    lunchTimeEnd.setHours(13,30,0,0)
+    lunchTimeEnd.setHours(14,0,0,0)
     lunchTimeEnd.setTime(lunchTimeEnd.getTime()+lunchTimeEnd.getTimezoneOffset()*60*1000)
     
     now = new Date()
@@ -36,7 +36,7 @@ module.exports = (robot) ->
         minutes = " #{minsTill} minute#{('s' if minsTill > 1) ? ''}"
         msg.send "Afraid not, only#{(hours if hoursTill >= 1) ? ''}#{(minutes if minsTill != 0) ? ''} to go though!"
       else if now > lunchTimeStart && now < lunchTimeEnd
-        msg.send "/giphy absolutely"
+        msg.send "http://media.giphy.com/media/jErnybNlfE1lm/giphy.gif"
       else
         msSince = Math.abs(now-lunchTimeEnd) / 1000
         hoursSince = Math.floor(msSince / 3600) % 24
