@@ -15,11 +15,12 @@
 
 module.exports = (robot) ->
   robot.respond /is it hometime yet/i, (msg) ->
+
     homeTime = new Date()
     homeTime.setHours(17,30,0,0)
-    homeTime.setTime(homeTime.getTime()+homeTime.getTimezoneOffset()*60*1000)
+
     now = new Date()
-    now.setTime(now.getTime()+now.getTimezoneOffset()*60*1000)
+
     msBetween = Math.abs(homeTime-now) / 1000
     hoursBetween = Math.floor(msBetween / 3600) % 24
     minsBetween = Math.floor(msBetween / 60) % 60

@@ -18,15 +18,12 @@ module.exports = (robot) ->
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
     lunchTimeStart = new Date()
     lunchTimeStart.setHours(12,0,0,0)
-    lunchTimeStart.setTime(lunchTimeStart.getTime()+lunchTimeStart.getTimezoneOffset()*60*1000)
 
     lunchTimeEnd = new Date()
     lunchTimeEnd.setHours(14,0,0,0)
-    lunchTimeEnd.setTime(lunchTimeEnd.getTime()+lunchTimeEnd.getTimezoneOffset()*60*1000)
-    
+
     now = new Date()
-    now.setTime(now.getTime()+now.getTimezoneOffset()*60*1000)
-    
+
     if msg.match[1] == "really lunchtime"
       if now < lunchTimeStart
         msTill = Math.abs(lunchTimeStart-now) / 1000
