@@ -2,19 +2,26 @@
 #   Ask that age old question - Is it lunchtime yet.
 #
 # Dependencies:
-#   None
+#   cron
 #
 # Configuration:
 #   None
 #
 # Commands:
 #   hubot is it lunchtime yet - Return the answer we all know and love.
-#   hubot is it really lunchtime yet  - Return the real time until deliciousness can begin!
+#   hubot is it really lunchtime yet - Return the real time until deliciousness can begin!
 #
 # Author:
 #  Richard Lindsay
 
+cronJob = require('cron').CronJob
+
 module.exports = (robot) ->
+
+  itsLunchtime = new cronJob('00 00 12 * * 1-5', (->
+    robot.messageRoom 'random', 'It\'s that moment you\'ve been waiting for since breakfast, LUNCHTIME!'
+  ), null, true)
+
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
     lunchTimeStart = new Date()
     lunchTimeStart.setHours(12,0,0,0)
@@ -46,3 +53,9 @@ module.exports = (robot) ->
           msg.send "Erm, lunch was over#{(hours if hoursSince > 1) ? ''} ago. I think you missed it!"
     else
       msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
+
+  robot.respond /lunchtime help/i, (msg) ->
+    message = []
+    message.push robot.name + ' is it lunchtime yet - Return the answer we all know and love.'
+    message.push robot.name + ' is it really lunchtime yet - Return the real time until deliciousness can begin!'
+    msg.send message.join('\n')
