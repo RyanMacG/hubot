@@ -2,7 +2,7 @@
 #   Ask that age old question - Is it hometime yet.
 #
 # Dependencies:
-#   None
+#   cron
 #
 # Configuration:
 #   None
@@ -12,6 +12,8 @@
 #
 # Author:
 #  Richard Lindsay
+
+cronJob = require('cron').CronJob
 
 module.exports = (robot) ->
 
