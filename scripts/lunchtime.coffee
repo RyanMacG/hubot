@@ -2,7 +2,7 @@
 #   Ask that age old question - Is it lunchtime yet.
 #
 # Dependencies:
-#   cron
+#   None
 #
 # Configuration:
 #   None
@@ -14,13 +14,7 @@
 # Author:
 #  Richard Lindsay
 
-cronJob = require('cron').CronJob
-
 module.exports = (robot) ->
-
-  itsLunchtime = new cronJob('00 00 12 * * 1-5', (->
-    robot.messageRoom 'random', 'It\'s that moment you\'ve been waiting for since breakfast, LUNCHTIME!'
-  ), null, true)
 
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
     lunchTimeStart = new Date()

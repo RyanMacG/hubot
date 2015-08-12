@@ -2,7 +2,7 @@
 #   Ask that age old question - Is it hometime yet.
 #
 # Dependencies:
-#   cron
+#   None
 #
 # Configuration:
 #   None
@@ -13,14 +13,8 @@
 # Author:
 #  Richard Lindsay
 
-cronJob = require('cron').CronJob
-
 module.exports = (robot) ->
 
-  itsHometime = new cronJob('00 30 17 * * 1-5', (->
-    robot.messageRoom 'random', 'Get out, It\'s hometime!'
-  ), null, true)
-  
   robot.respond /is it hometime yet/i, (msg) ->
     homeTime = new Date()
     homeTime.setHours(17,30,0,0)
