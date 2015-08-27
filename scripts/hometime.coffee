@@ -17,7 +17,10 @@ module.exports = (robot) ->
 
   robot.respond /is it hometime yet/i, (msg) ->
     homeTime = new Date()
-    homeTime.setHours(17,30,0,0)
+    if msg.envelope.user.name == 'alan'
+      homeTime.setHours(17,0,0,0)
+    else
+      homeTime.setHours(17,30,0,0)
 
     now = new Date()
 
@@ -27,7 +30,7 @@ module.exports = (robot) ->
     if now < homeTime
       hours = " #{hoursBetween} hour#{('s' if hoursBetween > 1) ? ''}"
       minutes = " #{minsBetween} minute#{('s' if minsBetween > 1) ? ''}"
-      msg.send "Afraid not, only#{(hours if hoursBetween >= 1) ? ''}#{(minutes if minsBetween != 0) ? ''} to go though!"
+      msg.send "Afraid not #{msg.envelope.user.name}, only#{(hours if hoursBetween >= 1) ? ''}#{(minutes if minsBetween != 0) ? ''} to go though!"
     else
       msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
 
