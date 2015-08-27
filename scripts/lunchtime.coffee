@@ -9,24 +9,22 @@
 #
 # Commands:
 #   hubot is it lunchtime yet - Return the answer we all know and love.
-#   hubot is it really lunchtime yet  - Return the real time until deliciousness can begin!
+#   hubot is it really lunchtime yet - Return the real time until deliciousness can begin!
 #
 # Author:
 #  Richard Lindsay
 
 module.exports = (robot) ->
+
   robot.respond /is it (really lunchtime|lunchtime) yet/i, (msg) ->
     lunchTimeStart = new Date()
     lunchTimeStart.setHours(12,0,0,0)
-    lunchTimeStart.setTime(lunchTimeStart.getTime()+lunchTimeStart.getTimezoneOffset()*60*1000)
 
     lunchTimeEnd = new Date()
     lunchTimeEnd.setHours(14,0,0,0)
-    lunchTimeEnd.setTime(lunchTimeEnd.getTime()+lunchTimeEnd.getTimezoneOffset()*60*1000)
-    
+
     now = new Date()
-    now.setTime(now.getTime()+now.getTimezoneOffset()*60*1000)
-    
+
     if msg.match[1] == "really lunchtime"
       if now < lunchTimeStart
         msTill = Math.abs(lunchTimeStart-now) / 1000
@@ -49,3 +47,9 @@ module.exports = (robot) ->
           msg.send "Erm, lunch was over#{(hours if hoursSince > 1) ? ''} ago. I think you missed it!"
     else
       msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
+
+  robot.respond /lunchtime help/i, (msg) ->
+    message = []
+    message.push robot.name + ' is it lunchtime yet - Return the answer we all know and love.'
+    message.push robot.name + ' is it really lunchtime yet - Return the real time until deliciousness can begin!'
+    msg.send message.join('\n')
