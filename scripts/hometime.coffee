@@ -30,7 +30,7 @@ module.exports = (robot) ->
     if now < homeTime
       hours = " #{hoursBetween} hour#{('s' if hoursBetween > 1) ? ''}"
       minutes = " #{minsBetween} minute#{('s' if minsBetween > 1) ? ''}"
-      msg.send "Afraid not #{msg.envelope.user.name}, only#{(hours if hoursBetween >= 1) ? ''}#{(minutes if minsBetween != 0) ? ''} to go though!"
+      msg.send "Afraid not #{msg.envelope.user.name}, only#{(hours if hoursBetween >= 1) ? ''}#{(minutes if minsBetween != 0) ? ''} till we can boost!"
     else
       msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
 
