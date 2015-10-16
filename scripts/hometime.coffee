@@ -15,7 +15,7 @@
 
 module.exports = (robot) ->
 
-  robot.respond /is it hometime yet/i, (msg) ->
+  robot.respond /is it home time yet/i, (msg) ->
     homeTime = new Date()
     if msg.envelope.user.name == 'alan'
       homeTime.setHours(17,0,0,0)
