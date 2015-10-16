@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot is it hometime yet - Return the time until we can all go home to our miserable lives.
+#   hubot is it home time yet - Return the time until we can all go home to our miserable lives.
 #
 # Author:
 #  Richard Lindsay
