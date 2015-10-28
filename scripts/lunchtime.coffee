@@ -45,11 +45,11 @@ module.exports = (robot) ->
       else
         msg.send "Erm, lunch was over#{(hours if hoursSince > 1) ? ''} ago. I think you missed it!"
 
-  robot.respond /can it be lunchtime yet/i, (msg) ->
+  robot.respond /can it be lunchtime now/i, (msg) ->
     msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
 
   robot.respond /lunchtime help/i, (msg) ->
     message = []
     message.push robot.name + ' is it lunchtime yet - Return time until lunch can commence'
-    message.push robot.name + ' can it be lunchtime yet - Return the answer you really wanted'
+    message.push robot.name + ' can it be lunchtime now - Return the answer you really wanted'
     msg.send message.join('\n')
