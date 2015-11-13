@@ -16,7 +16,7 @@
 
 module.exports = (robot) ->
 
-  robot.respond /is it lunchtime yet/i, (msg) ->
+  robot.respond /is it lunch\s?time yet/i, (msg) ->
     lunchTimeStart = new Date()
     lunchTimeStart.setHours(12,0,0,0)
 
