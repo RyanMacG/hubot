@@ -15,7 +15,7 @@
 
 module.exports = (robot) ->
 
-  robot.respond /(is it beer\s?time | can we drink) yet/i, (msg) ->
+  robot.respond /is it beer\s?time|can we drink/i, (msg) ->
     beerTime = new Date()
     beerTime.setHours(17,0,0,0)
 

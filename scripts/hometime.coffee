@@ -8,14 +8,14 @@
 #   None
 #
 # Commands:
-#   hubot is it home time yet - Return the time until we can all go home to our miserable lives.
+#   hubot is it home time - Return the time until we can all go home to our miserable lives.
 #
 # Author:
 #  Richard Lindsay
 
 module.exports = (robot) ->
 
-  robot.respond /(is it home\s?time | can we boost) yet/i, (msg) ->
+  robot.respond /is it home\stime|can we boost/i, (msg) ->
     homeTime = new Date()
     if msg.envelope.user.name == 'alan'
       homeTime.setHours(17,0,0,0)
@@ -35,5 +35,5 @@ module.exports = (robot) ->
       msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
 
   robot.respond /hometime help/i, (msg) ->
-    msg.send robot.name + ' is it hometime/home time yet - Return the time until we can all go home to our miserable lives :-/'
-    msg.send robot.name + ' can we boost yet - Is it boosting time yo?'
+    msg.send robot.name + ' is it hometime/home time - Return the time until we can all go home to our miserable lives :-/'
+    msg.send robot.name + ' can we boost - Is it boosting time yo?'
