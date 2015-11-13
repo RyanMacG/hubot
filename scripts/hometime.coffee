@@ -35,4 +35,5 @@ module.exports = (robot) ->
       msg.send "http://www.thetimes.co.uk/tto/multimedia/archive/00463/137493760__463465c.jpg"
 
   robot.respond /hometime help/i, (msg) ->
-    msg.send robot.name + ' is it hometime yet - Return the time until we can all go home to our miserable lives :-/'
+    msg.send robot.name + ' is it hometime/home time yet - Return the time until we can all go home to our miserable lives :-/'
+    msg.send robot.name + ' can we boost yet - Is it boosting time yo?'
