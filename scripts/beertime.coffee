@@ -17,7 +17,7 @@ module.exports = (robot) ->
 
   robot.respond /(is it beer\s?time | can we drink) yet/i, (msg) ->
     beerTime = new Date()
-    beerTime.setHours(17,00,0,0)
+    beerTime.setHours(17,0,0,0)
 
     now = new Date()
 
